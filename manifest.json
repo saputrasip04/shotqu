@@ -1,0 +1,26 @@
+{
+  "name": "ShotQu Pra-Produksi Film",
+  "short_name": "ShotQu",
+  "description": "Aplikasi Pra-Produksi Film & Televisi ShotQu — SMKN Ihya Ulummudin Singojuruh",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0f17",
+  "theme_color": "#0f172a",
+  "orientation": "any",
+  "categories": ["productivity", "entertainment", "utilities"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

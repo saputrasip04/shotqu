@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Portal Login Guru &amp; Admin — ShotQu SMKN Ihya Ulummudin Singojuruh</title>
+  <meta name="description" content="Portal Login Khusus Guru Pembimbing Praktik &amp; Administrator Pra-Produksi Film dan Televisi SMKN Ihya Ulummudin Singojuruh Banyuwangi.">
+  <meta name="theme-color" content="#060a12">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #060a12;
+      --bg-surface: #0c1220;
+      --bg-card: rgba(17, 26, 46, 0.75);
+      --border-card: rgba(56, 189, 248, 0.2);
+      --border-gold: rgba(245, 158, 11, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-gold: #f59e0b;
+      --accent-gold-hover: #d97706;
+      --accent-gold-glow: rgba(245, 158, 11, 0.25);
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --danger: #ef4444;
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Cinema Lighting Effects */
+    .ambient-glow-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(56, 189, 248, 0.08) 35%, rgba(6, 10, 18, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-top {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 380px;
+      background: radial-gradient(ellipse at top, rgba(30, 58, 138, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Outer Wrapper */
+    .login-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 480px;
+      margin: auto;
+    }
+
+    /* Logo & Header Section */
+    .login-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .logo-box {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 1rem auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(56, 189, 248, 0.2));
+      padding: 3px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.25);
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 3px;
+    }
+
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #facc15;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+
+    .login-title {
+      font-size: 1.65rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
+    .login-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      line-height: 1.45;
+    }
+
+    /* Main Glass Card */
+    .login-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 0.45rem;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #080d1a;
+      border: 1.5px solid #1e293b;
+      border-radius: 10px;
+      padding: 0.8rem 1rem 0.8rem 2.85rem;
+      color: #ffffff;
+      font-size: 0.94rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: #f59e0b;
+      background: #0b1325;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+    }
+
+    .toggle-pwd-btn {
+      position: absolute;
+      right: 0.85rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s ease;
+    }
+
+    .toggle-pwd-btn:hover {
+      color: #facc15;
+    }
+
+    /* Buttons */
+    .btn-login {
+      width: 100%;
+      padding: 0.88rem 1.25rem;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #0f172a;
+      font-size: 0.98rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.35);
+      margin-top: 0.5rem;
+    }
+
+    .btn-login:hover {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.45);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .btn-guest {
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(15, 23, 42, 0.6);
+      color: #cbd5e1;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      margin-top: 0.85rem;
+      text-decoration: none;
+    }
+
+    .btn-guest:hover {
+      background: rgba(30, 41, 59, 0.8);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Info Credentials Card */
+    .info-box {
+      margin-top: 1.5rem;
+      padding: 0.85rem 1rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px dashed rgba(234, 179, 8, 0.35);
+      border-radius: 10px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .info-box-title {
+      font-weight: 800;
+      color: #facc15;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-box code {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      color: #38bdf8;
+      font-family: monospace;
+    }
+
+    /* Feedback Alert */
+    .alert-box {
+      display: none;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 1.15rem;
+      align-items: center;
+      gap: 0.55rem;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.45);
+      color: #fca5a5;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #6ee7b7;
+    }
+
+    /* Already Logged In Panel */
+    .logged-in-panel {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .logged-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .login-footer {
+      text-align: center;
+      margin-top: 1.75rem;
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Cinematic Background -->
+  <div class="ambient-glow-top"></div>
+  <div class="ambient-glow-center"></div>
+
+  <div class="login-container">
+    <!-- Header -->
+    <header class="login-header">
+      <div class="logo-box">
+        <img id="login-logo-img" src="logo.png" alt="Logo Sekolah">
+      </div>
+      <div>
+        <span class="portal-badge">
+          <span>🔐</span> Portal Administrasi &amp; Guru
+        </span>
+      </div>
+      <h1 class="login-title">ShotQu Guru &amp; Admin</h1>
+      <p class="login-subtitle">
+        Program Keahlian Broadcasting &amp; Perfilman<br>
+        <span id="login-school-name">SMK Negeri Ihya Ulummudin Singojuruh Banyuwangi</span>
+      </p>
+    </header>
+
+    <!-- Card -->
+    <main class="login-card">
+      <!-- Alert Message Box -->
+      <div id="alert-msg" class="alert-box"></div>
+
+      <!-- State: Already Logged In -->
+      <div id="logged-in-box" class="logged-in-panel">
+        <div class="logged-badge">
+          <span>👑</span> Sesi Guru / Admin Aktif
+        </div>
+        <p style="font-size:0.92rem;color:#f1f5f9;margin-bottom:0.4rem">
+          Anda saat ini masuk sebagai: <strong id="logged-user-name" style="color:#facc15">Admin</strong>
+        </p>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1.4rem">
+          Sesi login aktif. Anda dapat mengelola logo, nama sekolah, dan kop surat resmi.
+        </p>
+        <button type="button" class="btn-login" onclick="window.location.href='index.html#admin'">
+          ⚙️ Buka Menu Admin
+        </button>
+        <button type="button" class="btn-guest" onclick="handleLogout()">
+          🚪 Keluar (Logout Admin)
+        </button>
+      </div>
+
+      <!-- State: Form Login -->
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="username">
+            <span>Username Guru / Admin:</span>
+          </label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" id="username" class="form-input" placeholder="admin" value="admin" autocomplete="username" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">
+            <span>Kata Sandi:</span>
+          </label>
+          <div class="input-wrap">
+            <span class="input-icon">🔑</span>
+            <input type="password" id="password" class="form-input" placeholder="Masukkan kata sandi" autocomplete="current-password" required>
+            <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility()" title="Tampilkan / Sembunyikan Sandi">
+              <span id="eye-icon">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" id="btn-submit">
+          <span>🔓</span> Masuk sebagai Guru / Admin
+        </button>
+
+        <a href="index.html" class="btn-guest">
+          <span>🏠</span> Masuk sebagai Siswa (Buka Lembar Kerja)
+        </a>
+
+        <!-- Petunjuk Kredensial Bawaan -->
+        <div class="info-box">
+          <div class="info-box-title">
+            <span>💡</span> Informasi Akun Guru Bawaan:
+          </div>
+          <div>Username: <code>admin</code> atau <code>guru</code></div>
+          <div style="margin-top:2px">Kata Sandi: <code>smk2026</code> (bisa diubah di Menu Admin)</div>
+          <div id="login-xampp-status" style="margin-top:8px;padding-top:6px;border-top:1px dashed rgba(245,158,11,0.25);font-size:0.75rem;display:flex;align-items:center;gap:5px">
+            <span class="status-dot">●</span> <span id="login-xampp-text">Memeriksa koneksi XAMPP...</span>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="login-footer">
+      <p>KONSENTRASI KEAHLIAN PRODUKSI DAN SIARAN PROGRAM TELEVISI</p>
+      <p>SMKN IHYA ULUMMUDIN SINGOJURUH — BANYUWANGI</p>
+      <p style="margin-top:0.4rem;color:var(--text-dim)">
+        Copyright &copy; 2026 Saputra Indra Purnama
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Inisialisasi kredensial bawaan jika belum pernah diatur
+    const DEFAULT_USER = 'admin';
+    const DEFAULT_PWD  = 'smk2026';
+
+    function getStoredUser() {
+      return localStorage.getItem('shotqu_admin_user') || DEFAULT_USER;
+    }
+
+    function getStoredPwd() {
+      return localStorage.getItem('shotqu_admin_pwd') || DEFAULT_PWD;
+    }
+
+    function checkActiveSession() {
+      try {
+        const raw = localStorage.getItem('shotqu_auth');
+        if (raw) {
+          const auth = JSON.parse(raw);
+          if (auth && auth.role === 'admin') {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('logged-in-box').style.display = 'block';
+            document.getElementById('logged-user-name').textContent = auth.displayName || auth.username || 'Guru Pembimbing';
+            return true;
+          }
+        }
+      } catch (e) {}
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('logged-in-box').style.display = 'none';
+      return false;
+    }
+
+    function showAlert(text, type = 'error') {
+      const el = document.getElementById('alert-msg');
+      el.className = 'alert-box ' + (type === 'error' ? 'alert-error' : 'alert-success');
+      el.innerHTML = (type === 'error' ? '⚠️ ' : '✅ ') + text;
+      el.style.display = 'flex';
+    }
+
+    function hideAlert() {
+      const el = document.getElementById('alert-msg');
+      el.style.display = 'none';
+    }
+
+    function togglePasswordVisibility() {
+      const inp = document.getElementById('password');
+      const icon = document.getElementById('eye-icon');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        icon.textContent = '🙈';
+      } else {
+        inp.type = 'password';
+        icon.textContent = '👁️';
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      hideAlert();
+
+      const userVal = document.getElementById('username').value.trim();
+      const pwdVal  = document.getElementById('password').value;
+      const btn     = document.getElementById('btn-submit');
+      const origHtml = btn.innerHTML;
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳</span> Memverifikasi Kredensial...';
+
+      let loggedIn = false;
+      let authData = null;
+
+      // 1. Coba verifikasi dengan XAMPP MySQL backend API
+      try {
+        const res = await fetch('api/auth.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'login', username: userVal, password: pwdVal })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.success && data.user) {
+            loggedIn = true;
+            authData = {
+              role: data.user.role || 'admin',
+              username: data.user.username,
+              displayName: data.user.displayName,
+              source: 'xampp_mysql',
+              loggedInAt: new Date().toISOString()
+            };
+          }
+        }
+      } catch (err) {
+        console.warn('XAMPP Auth API tidak merespons, beralih ke fallback lokal:', err);
+      }
+
+      // 2. Fallback offline / LocalStorage
+      if (!loggedIn) {
+        const validUser = getStoredUser();
+        const validPwd  = getStoredPwd();
+
+        const isUserMatch = (
+          userVal.toLowerCase() === validUser.toLowerCase() ||
+          userVal.toLowerCase() === 'admin' ||
+          userVal.toLowerCase() === 'guru'
+        );
+        const isPwdMatch = (pwdVal === validPwd);
+
+        if (isUserMatch && isPwdMatch) {
+          const teacherName = localStorage.getItem('shotqu_teacher_name') || 'Drs. H. Ahmad Harun (Guru Pembimbing)';
+          loggedIn = true;
+          authData = {
+            role: 'admin',
+            username: userVal,
+            displayName: teacherName,
+            source: 'local_storage',
+            loggedInAt: new Date().toISOString()
+          };
+        }
+      }
+
+      if (loggedIn && authData) {
+        localStorage.setItem('shotqu_auth', JSON.stringify(authData));
+
+        showAlert('Autentikasi Berhasil! Mengalihkan ke Dashboard Guru...', 'success');
+        btn.innerHTML = '<span>⏳</span> Membuka Dashboard...';
+
+        setTimeout(() => {
+          window.location.href = 'index.html?tab=admin';
+        }, 600);
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = origHtml;
+        showAlert('Username atau kata sandi tidak sesuai. Silakan periksa kembali!');
+        document.getElementById('password').focus();
+        document.getElementById('password').select();
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('shotqu_auth');
+      checkActiveSession();
+      showAlert('Anda telah keluar dari mode admin.', 'success');
+      setTimeout(hideAlert, 3000);
+    }
+
+    async function checkXamppServer() {
+      const statusEl = document.getElementById('login-xampp-status');
+      const textEl = document.getElementById('login-xampp-text');
+      if (!statusEl || !textEl) return;
+
+      try {
+        const res = await fetch('api/status.php', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.status === 'connected') {
+            statusEl.style.color = '#34d399';
+            textEl.innerHTML = `Terhubung ke <strong>XAMPP (${data.database})</strong> • MySQL Siap`;
+            return;
+          }
+        }
+      } catch (e) {}
+
+      statusEl.style.color = '#f59e0b';
+      textEl.innerHTML = `Mode Standalone / Lokal (Buka via <code>http://localhost/shotlist</code> untuk akses XAMPP)`;
+    }
+
+    // Jalankan pemeriksaan awal
+    document.addEventListener('DOMContentLoaded', () => {
+      // Muat identitas sekolah dinamis jika ada
+      try {
+        const rawKop = localStorage.getItem('shotqu_kop_config');
+        if (rawKop) {
+          const kop = JSON.parse(rawKop);
+          if (kop.logo) {
+            const logoImg = document.getElementById('login-logo-img');
+            if (logoImg) logoImg.src = kop.logo;
+          }
+          if (kop.line2) {
+            const schoolEl = document.getElementById('login-school-name');
+            if (schoolEl) schoolEl.textContent = kop.line2;
+          }
+        }
+      } catch (e) {}
+
+      checkActiveSession();
+      checkXamppServer();
+
+      const pwdInput = document.getElementById('password');
+      if (pwdInput && document.getElementById('login-form').style.display !== 'none') {
+        pwdInput.focus();
+      }
+    });
+  </script>
+</body>
+</html>
